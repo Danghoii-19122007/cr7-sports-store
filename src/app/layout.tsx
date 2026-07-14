@@ -6,6 +6,8 @@ import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import CartDrawer from "@/components/CartDrawer";
 import ClientEffects from "@/components/ClientEffects";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "CR7 Premium Sports - Wear Greatness",
@@ -31,6 +33,8 @@ export default function RootLayout({
             <Footer />
           </CartProvider>
         </AuthProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
