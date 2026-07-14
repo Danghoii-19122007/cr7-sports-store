@@ -17,6 +17,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "TRANG CHỦ", path: "/" },
     { name: "SẢN PHẨM", path: "/shop" },
+    { name: "ABOUT ME", path: "/about" },
   ];
 
   return (

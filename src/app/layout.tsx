@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import CartDrawer from "@/components/CartDrawer";
+import ClientEffects from "@/components/ClientEffects";
 
 export const metadata: Metadata = {
   title: "CR7 Premium Sports - Wear Greatness",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className="antialiased min-h-screen flex flex-col bg-obsidian text-silverLight font-sans">
         <AuthProvider>
           <CartProvider>
+            <ClientEffects />
             <Navbar />
             <CartDrawer />
             <main className="flex-grow pt-20">

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, Instagram, Facebook, Twitter, Award } from "lucide-react";
+import { Mail, Phone, Instagram, Facebook, Twitter, Award } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -68,18 +68,42 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Contact Info */}
+      <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 pb-8">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+          <a href="mailto:lehieudang123123@gmail.com" className="flex items-center space-x-3 text-gray-400 hover:text-cr7Green transition-colors group">
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-cr7Green/50 transition-colors">
+              <Mail className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="block text-[10px] font-display font-bold tracking-widest text-gray-500 uppercase">Email</span>
+              <span className="text-sm text-white">lehieudang123123@gmail.com</span>
+            </div>
+          </a>
+          <a href="tel:0858208886" className="flex items-center space-x-3 text-gray-400 hover:text-cr7Green transition-colors group">
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-cr7Green/50 transition-colors">
+              <Phone className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="block text-[10px] font-display font-bold tracking-widest text-gray-500 uppercase">Hotline</span>
+              <span className="text-sm text-white">0858 208 886</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
       {/* Footer Bottom Bar */}
       <div className="max-w-7xl mx-auto px-6 border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
         <p className="text-xs text-gray-500">
-          © {new Date().getFullYear()} CR7 Sport Store. Code created for demo purposes. Design engineered for speed.
+          © {new Date().getFullYear()} CR7 Sport Store. Designed & Developed by <a href="/about" className="text-cr7Green hover:text-white transition-colors font-display font-bold">DangH_oii</a>.
         </p>
 
         {/* Social Icons */}
         <div className="flex space-x-6">
-          <a href="#" className="text-gray-500 hover:text-cr7Green transition-colors" aria-label="Facebook">
+          <a href="https://www.facebook.com/Danghoii191207" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-cr7Green transition-colors" aria-label="Facebook">
             <Facebook className="w-5 h-5" />
           </a>
-          <a href="#" className="text-gray-500 hover:text-cr7Green transition-colors" aria-label="Instagram">
+          <a href="https://www.instagram.com/dangh_oii/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-cr7Green transition-colors" aria-label="Instagram">
             <Instagram className="w-5 h-5" />
           </a>
           <a href="#" className="text-gray-500 hover:text-cr7Green transition-colors" aria-label="Twitter">

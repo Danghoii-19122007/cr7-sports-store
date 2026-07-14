@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ShoppingCart, Star, Eye } from "lucide-react";
 import { Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
@@ -18,6 +18,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [showSizes, setShowSizes] = useState(false);
   const [addedMessage, setAddedMessage] = useState(false);
 
+  // 3D Tilt Effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
   const handleQuickAdd = (size: string) => {
     addToCart(product, 1, size);
     setShowSizes(false);
@@ -26,18 +46,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <motion.div
-      className="bg-slateDark border border-white/5 rounded-xl overflow-hidden shadow-lg relative group flex flex-col h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setShowSizes(false);
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-    >
+    <div style={{ perspective: 1200 }} className="h-full">
+      <motion.div
+        className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-2xl relative group flex flex-col h-full hover:border-white/20 transition-colors"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setShowSizes(false);
+          x.set(0);
+          y.set(0);
+        }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      >
       {/* Product Image & Badges */}
       <div className="relative aspect-square overflow-hidden bg-obsidian flex items-center justify-center cursor-pointer">
         {/* Badge */}
@@ -169,6 +194,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       </div>
     </motion.div>
+    </div>
   );
 };
 

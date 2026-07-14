@@ -110,7 +110,7 @@ const Hero = () => {
             {/* Hero Image Background */}
             <div className="absolute inset-0 opacity-30">
               <img
-                src="https://images.unsplash.com/photo-1584735934672-e4630079266f?w=500&h=650&fit=crop"
+                src="/images/product-mercurial.jpg"
                 alt="CR7 Football Hero"
                 className="w-full h-full object-cover"
               />

@@ -93,3 +93,21 @@ body {
 .pulse-glow {
   animation: pulseGlow 4s infinite ease-in-out;
 }
+
+/* Hide default cursor on desktop when custom cursor is active */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 255, 135, 0.3);
+  color: white;
+}
